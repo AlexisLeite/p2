@@ -1,0 +1,12 @@
+1c1
+< 1>2>La amplitud del árbol es: 4096.
+---
+> 1>2>La amplitud del árbol es: 0.
+3c3
+< 3>4>5>La amplitud del árbol es: 8192.
+---
+> 3>4>5>La amplitud del árbol es: 0.
+5c5
+< 6>7>8>La amplitud del árbol es: 8190.
+---
+> 6>7>8>La amplitud del árbol es: 0.

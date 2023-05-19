@@ -69,6 +69,7 @@ void liberarAgendaLS(TAgendaLS &agenda)
     liberarAgendaLS(agenda->sig);
     liberarTEvento(agenda->evento);
     delete agenda;
+    agenda = NULL;
   }
 }
 

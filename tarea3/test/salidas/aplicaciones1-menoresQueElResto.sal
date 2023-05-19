@@ -1,0 +1,2 @@
+principal: principal.cpp:1234: void main_imprimirPila(rep_pilaPersona*&): Assertion `pilaPersona != NULL' failed.
+Aborted

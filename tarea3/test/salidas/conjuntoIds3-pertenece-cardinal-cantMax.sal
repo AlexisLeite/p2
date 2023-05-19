@@ -1,0 +1,2 @@
+principal: principal.cpp:1333: void main_cantMaxConjuntoIds(rep_conjuntoIds*&): Assertion `conjuntoIds != NULL' failed.
+Aborted

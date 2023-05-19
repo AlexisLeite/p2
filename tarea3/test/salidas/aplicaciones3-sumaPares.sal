@@ -1,0 +1,2 @@
+principal: principal.cpp:1291: void main_insertarConjuntoIds(rep_conjuntoIds*&): Assertion `conjuntoIds != NULL' failed.
+Aborted
