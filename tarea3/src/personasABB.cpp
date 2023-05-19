@@ -48,6 +48,7 @@ void liberarTPersonasABB(TPersonasABB &personasABB)
     liberarTPersonasABB(personasABB->right);
     liberarTPersona(personasABB->persona);
     delete personasABB;
+    personasABB = NULL;
   }
 }
 
@@ -233,24 +234,25 @@ TPersonasLDE aTPersonasLDE(TPersonasABB personasABB)
   return newList;
 }
 
-
 ///////////////////////////////////////////////////////////////////////////
 /////////////  NUEVAS FUNCIONES  //////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
-nat amplitudTPersonasABB(TPersonasABB personasABB) {
-    return 0;
+nat amplitudTPersonasABB(TPersonasABB personasABB)
+{
+  return 0;
 }
 
-TPilaPersona serializarTPersonasABB(TPersonasABB personasABB) {
-    return NULL;
+TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
+{
+  return NULL;
 }
 
-TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas) {
-    return NULL;
+TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
+{
+  return NULL;
 }
 
 ///////////////////////////////////////////////////////////////////////////
 /////////////  FIN NUEVAS FUNCIONES  //////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
-

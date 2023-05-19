@@ -3,7 +3,7 @@
 
 struct rep_pilaNodo
 {
-  TPersona persona;
+  TPersona person;
   rep_pilaNodo *next;
 };
 
@@ -28,7 +28,7 @@ void liberarTPilaPersonaAux(rep_pilaNodo *node)
   if (node != NULL)
   {
     liberarTPilaPersonaAux(node->next);
-    liberarTPersona(node->persona);
+    liberarTPersona(node->person);
     delete node;
   }
 }
@@ -49,18 +49,21 @@ nat cantidadEnTPilaPersona(TPilaPersona p)
 
 void apilarEnTPilaPersona(TPilaPersona &p, TPersona persona)
 {
-  rep_pilaNodo *newNode = new rep_pilaNodo;
-  newNode->persona = copiarTPersona(persona);
-  newNode->next = p->first;
-  p->length++;
-  p->first = newNode;
+  if (persona != NULL)
+  {
+    rep_pilaNodo *newNode = new rep_pilaNodo;
+    newNode->person = copiarTPersona(persona);
+    newNode->next = p->first;
+    p->length++;
+    p->first = newNode;
+  }
 }
 
 TPersona cimaDeTPilaPersona(TPilaPersona p)
 {
   if (p == NULL)
     return NULL;
-  return p->first->persona;
+  return p->first->person;
 }
 
 void desapilarDeTPilaPersona(TPilaPersona &p)
@@ -73,7 +76,7 @@ void desapilarDeTPilaPersona(TPilaPersona &p)
       p->first = p->first->next;
     p->length--;
 
-    liberarTPersona(firstNode->persona);
+    liberarTPersona(firstNode->person);
     delete firstNode;
   }
 }

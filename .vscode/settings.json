@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.tpl": "html",
+    "*.js": "javascriptreact",
+    "*.php": "php",
+    "string_view": "cpp"
+  }
+}
