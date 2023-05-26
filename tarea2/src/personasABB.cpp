@@ -4,7 +4,7 @@
 
 struct rep_personasAbb
 {
-  TPersona persona;
+  TPersona person;
   TPersonasABB left, right;
 };
 
@@ -23,13 +23,13 @@ void insertarTPersonasABB(TPersonasABB &personasABB, TPersona p)
   if (personasABB == NULL)
   {
     TPersonasABB newNode = new rep_personasAbb;
-    newNode->persona = p;
+    newNode->person = p;
     newNode->left = newNode->right = NULL;
     personasABB = newNode;
   }
   else
   {
-    if (idTPersona(p) < idTPersona(personasABB->persona))
+    if (idTPersona(p) < idTPersona(personasABB->person))
     {
       insertarTPersonasABB(personasABB->left, p);
     }
@@ -46,7 +46,7 @@ void liberarTPersonasABB(TPersonasABB &personasABB)
   {
     liberarTPersonasABB(personasABB->left);
     liberarTPersonasABB(personasABB->right);
-    liberarTPersona(personasABB->persona);
+    liberarTPersona(personasABB->person);
     delete personasABB;
   }
 }
@@ -56,7 +56,7 @@ void imprimirTPersonasABB(TPersonasABB personasABB)
   if (personasABB != NULL)
   {
     imprimirTPersonasABB(personasABB->left);
-    imprimirTPersona(personasABB->persona);
+    imprimirTPersona(personasABB->person);
     imprimirTPersonasABB(personasABB->right);
   }
 }
@@ -72,18 +72,18 @@ TPersona maxIdPersona(TPersonasABB personasABB)
 {
   if (personasABB->right != NULL)
     return maxIdPersona(personasABB->right);
-  return personasABB->persona;
+  return personasABB->person;
 }
 
 void removerTPersonasABB(TPersonasABB &personasABB, nat id)
 {
-  if (idTPersona(personasABB->persona) > id)
+  if (idTPersona(personasABB->person) > id)
     removerTPersonasABB(personasABB->left, id);
-  else if (idTPersona(personasABB->persona) < id)
+  else if (idTPersona(personasABB->person) < id)
     removerTPersonasABB(personasABB->right, id);
   else
   {
-    liberarTPersona(personasABB->persona);
+    liberarTPersona(personasABB->person);
 
     if (personasABB->left == NULL)
     {
@@ -101,7 +101,7 @@ void removerTPersonasABB(TPersonasABB &personasABB, nat id)
     {
       TPersona max = copiarTPersona(maxIdPersona(personasABB->left));
       removerTPersonasABB(personasABB->left, idTPersona(max));
-      personasABB->persona = max;
+      personasABB->person = max;
     }
   }
 }
@@ -120,7 +120,7 @@ void imprimirArbol(TPersonasABB a, int tab)
     return;
 
   printTab(tab);
-  printf("Nodo actual: %s, edad: %d\n", nombreTPersona(a->persona), edadTPersona(a->persona));
+  printf("Nodo actual: %s, edad: %d\n", nombreTPersona(a->person), edadTPersona(a->person));
   printTab(tab);
   printf("{\n");
   printTab(tab);
@@ -137,18 +137,18 @@ bool estaTPersonasABB(TPersonasABB personasABB, nat id)
 {
   if (personasABB == NULL)
     return false;
-  if (idTPersona(personasABB->persona) == id)
+  if (idTPersona(personasABB->person) == id)
     return true;
-  if (idTPersona(personasABB->persona) < id)
+  if (idTPersona(personasABB->person) < id)
     return estaTPersonasABB(personasABB->right, id);
   return estaTPersonasABB(personasABB->left, id);
 }
 
 TPersona obtenerDeTPersonasABB(TPersonasABB personasABB, nat id)
 {
-  if (idTPersona(personasABB->persona) == id)
-    return personasABB->persona;
-  if (idTPersona(personasABB->persona) < id)
+  if (idTPersona(personasABB->person) == id)
+    return personasABB->person;
+  if (idTPersona(personasABB->person) < id)
     return obtenerDeTPersonasABB(personasABB->right, id);
   return obtenerDeTPersonasABB(personasABB->left, id);
 }
@@ -185,7 +185,7 @@ TPersonasABB copiarTree(TPersonasABB a)
     return NULL;
 
   TPersonasABB newTree = new rep_personasAbb;
-  newTree->persona = copiarTPersona(a->persona);
+  newTree->person = copiarTPersona(a->person);
   newTree->left = copiarTree(a->left);
   newTree->right = copiarTree(a->right);
 
@@ -197,11 +197,11 @@ TPersonasABB mayoresTPersonasABB(TPersonasABB personasABB, nat edad)
   if (personasABB == NULL)
     return NULL;
 
-  if (edadTPersona(personasABB->persona) >= edad)
+  if (edadTPersona(personasABB->person) >= edad)
   {
     TPersonasABB newTree = new rep_personasAbb;
-    newTree->persona = copiarTPersona(personasABB->persona);
-    if (edadTPersona(personasABB->persona) > edad)
+    newTree->person = copiarTPersona(personasABB->person);
+    if (edadTPersona(personasABB->person) > edad)
     {
       newTree->left = mayoresTPersonasABB(personasABB->left, edad);
     }
@@ -221,7 +221,7 @@ void makeList(TPersonasABB t, TPersonasLDE &list)
 
   makeList(t->left, list);
 
-  insertarTPersonasLDE(list, copiarTPersona(t->persona), UINT_MAX);
+  insertarTPersonasLDE(list, copiarTPersona(t->person), UINT_MAX);
 
   makeList(t->right, list);
 }

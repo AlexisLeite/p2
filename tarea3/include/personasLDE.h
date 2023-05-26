@@ -14,6 +14,7 @@
 
 // Definición de tipo TPersonasLDE como un puntero a rep_personasLDE
 typedef struct rep_personasLDE *TPersonasLDE;
+typedef struct nodoDoble *Nodo;
 
 // Función para crear una nueva lista vacía de personas
 TPersonasLDE crearTPersonasLDE();
@@ -88,4 +89,4 @@ TPersona obtenerFinalDeTPersonasLDE(TPersonasLDE personas);
 /////////////  FIN NUEVAS FUNCIONES  //////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
-#endif  // PERSONASLDE_H
+#endif // PERSONASLDE_H

@@ -61,7 +61,7 @@ void apilarEnTPilaPersona(TPilaPersona &p, TPersona persona)
 
 TPersona cimaDeTPilaPersona(TPilaPersona p)
 {
-  if (p == NULL)
+  if (p == NULL || p->first == NULL)
     return NULL;
   return p->first->person;
 }

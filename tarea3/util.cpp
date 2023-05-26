@@ -2,9 +2,18 @@
 #include <iostream>
 #include <string>
 
-void writeStringToFile(const std::string &str)
+void clearFile()
 {
   std::ofstream outputFile("log.txt", std::ofstream::out | std::ofstream::trunc);
+  if (outputFile.is_open())
+  {
+    outputFile.close();
+  }
+}
+
+void writeStringToFile(const std::string &str)
+{
+  std::ofstream outputFile("log.txt", std::ofstream::app);
   if (outputFile.is_open())
   {
     outputFile << std::endl

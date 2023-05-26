@@ -1,6 +1,5 @@
 #include <limits.h>
 #include <cmath>
-#include "../util.cpp"
 #include "../include/personasABB.h"
 #include "../include/colaPersonasABB.h"
 
@@ -332,9 +331,10 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
     TPersona person = cimaDeTPilaPersona(pilaPersonas);
 
     if (person != NULL)
+    {
       insertarTPersonasABB(newTree, copiarTPersona(person));
-
-    desapilarDeTPilaPersona(pilaPersonas);
+      desapilarDeTPilaPersona(pilaPersonas);
+    }
   }
 
   liberarTPilaPersona(pilaPersonas);

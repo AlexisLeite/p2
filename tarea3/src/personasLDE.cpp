@@ -1,8 +1,7 @@
 #include "../include/personasLDE.h"
 
-typedef struct nodoDoble* Nodo;
-
-struct nodoDoble {
+struct nodoDoble
+{
   TPersona persona;
   Nodo sig;
   Nodo ant;
@@ -12,7 +11,7 @@ struct rep_personasLDE
 {
   Nodo inicio;
   Nodo final;
-  nat* length;
+  nat *length;
 };
 
 TPersonasLDE crearTPersonasLDE()
@@ -33,25 +32,34 @@ void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos)
   newNode->persona = persona;
   *personas->length += 1;
 
-  if(personas->inicio == NULL) {
+  if (personas->inicio == NULL)
+  {
     personas->inicio = newNode;
     personas->final = newNode;
     newNode->ant = NULL;
     newNode->sig = NULL;
-  } else {
-    if(pos == 1) {
+  }
+  else
+  {
+    if (pos == 1)
+    {
       newNode->sig = personas->inicio;
       newNode->ant = NULL;
       personas->inicio = newNode;
-    } else if(*personas->length <= pos) {
+    }
+    else if (*personas->length <= pos)
+    {
       personas->final->sig = newNode;
       newNode->ant = personas->final;
       newNode->sig = NULL;
       personas->final = newNode;
-    } else {
+    }
+    else
+    {
       nat i = 1;
       Nodo ptr = personas->inicio;
-      while(i < pos) {
+      while (i < pos)
+      {
         i++;
         ptr = ptr->sig;
       }
@@ -63,9 +71,11 @@ void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos)
   }
 }
 
-void liberarNodes(Nodo ptr, bool untilEnd = true) {
-  if(ptr != NULL) {
-    if(untilEnd)
+void liberarNodes(Nodo ptr, bool untilEnd = true)
+{
+  if (ptr != NULL)
+  {
+    if (untilEnd)
       liberarNodes(ptr->sig, untilEnd);
     liberarTPersona(ptr->persona);
     delete ptr;
@@ -74,7 +84,8 @@ void liberarNodes(Nodo ptr, bool untilEnd = true) {
 
 void liberarTPersonasLDE(TPersonasLDE &personasLDE)
 {
-  if(personasLDE != NULL) {
+  if (personasLDE != NULL)
+  {
     liberarNodes(personasLDE->inicio);
     delete personasLDE->length;
     delete personasLDE;
@@ -82,8 +93,10 @@ void liberarTPersonasLDE(TPersonasLDE &personasLDE)
   }
 }
 
-void imprimirNodo(Nodo nodo) {
-  if(nodo != NULL) {
+void imprimirNodo(Nodo nodo)
+{
+  if (nodo != NULL)
+  {
     imprimirTPersona(nodo->persona);
     imprimirNodo(nodo->sig);
   }
@@ -101,15 +114,17 @@ nat cantidadTPersonasLDE(TPersonasLDE personas)
 
 void eliminarInicioTPersonasLDE(TPersonasLDE &personas)
 {
-  if(personas->inicio != NULL) {
+  if (personas->inicio != NULL)
+  {
     Nodo inicio = personas->inicio;
     personas->inicio = personas->inicio->sig;
-    if(personas->inicio != NULL)
+    if (personas->inicio != NULL)
       personas->inicio->ant = NULL;
 
     *personas->length -= 1;
-    if(*personas->length == 0) personas->final = NULL;
-    
+    if (*personas->length == 0)
+      personas->final = NULL;
+
     liberarTPersona(inicio->persona);
     delete inicio;
   }
@@ -117,23 +132,28 @@ void eliminarInicioTPersonasLDE(TPersonasLDE &personas)
 
 void eliminarFinalTPersonasLDE(TPersonasLDE &personas)
 {
-  if(personas->inicio != NULL) {
+  if (personas->inicio != NULL)
+  {
     Nodo final = personas->final;
     personas->final = personas->final->ant;
-    if(personas->final != NULL)
+    if (personas->final != NULL)
       personas->final->sig = NULL;
 
     *personas->length -= 1;
-    if(*personas->length == 0) personas->inicio = NULL;
+    if (*personas->length == 0)
+      personas->inicio = NULL;
 
     liberarTPersona(final->persona);
     delete final;
   }
 }
 
-bool estaEnNodo(Nodo nodo, nat id) {
-  if(nodo == NULL) return false;
-  if(idTPersona(nodo->persona) == id) return true;
+bool estaEnNodo(Nodo nodo, nat id)
+{
+  if (nodo == NULL)
+    return false;
+  if (idTPersona(nodo->persona) == id)
+    return true;
   return estaEnNodo(nodo->sig, id);
 }
 
@@ -142,9 +162,12 @@ bool estaEnTPersonasLDE(TPersonasLDE personas, nat id)
   return estaEnNodo(personas->inicio, id);
 }
 
-TPersona obtenerDeNodo(Nodo nodo, nat id) {
-  if(nodo == NULL) return NULL;
-  if(idTPersona(nodo->persona) == id) return nodo->persona;
+TPersona obtenerDeNodo(Nodo nodo, nat id)
+{
+  if (nodo == NULL)
+    return NULL;
+  if (idTPersona(nodo->persona) == id)
+    return nodo->persona;
   return obtenerDeNodo(nodo->sig, id);
 }
 
@@ -157,18 +180,23 @@ TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE persona
 {
   TPersonasLDE newList = crearTPersonasLDE();
 
-  if(*personas1->length > 0 && *personas2->length > 0) {
+  if (*personas1->length > 0 && *personas2->length > 0)
+  {
     newList->inicio = personas1->inicio;
     newList->final = personas2->final;
     *newList->length = *personas1->length + *personas2->length;
 
     personas1->final->sig = personas2->inicio;
     personas2->inicio->ant = personas1->final;
-  } else if(*personas1->length > 0) {
+  }
+  else if (*personas1->length > 0)
+  {
     newList->inicio = personas1->inicio;
     newList->final = personas1->final;
     *newList->length = *personas1->length;
-  } else if(*personas2->length > 0) {
+  }
+  else if (*personas2->length > 0)
+  {
     newList->inicio = personas2->inicio;
     newList->final = personas2->final;
     *newList->length = *personas2->length;
@@ -186,18 +214,26 @@ TPersonasLDE concatenarTPersonasLDE(TPersonasLDE personas1, TPersonasLDE persona
 /////////////  NUEVAS FUNCIONES  //////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
-void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){
-    insertarTPersonasLDE(personas, persona, 1);
+void insertarInicioDeTPersonasLDE(TPersonasLDE &personas, TPersona persona)
+{
+  insertarTPersonasLDE(personas, persona, 1);
 }
 
-void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona){    
-    insertarTPersonasLDE(personas, persona, cantidadTPersonasLDE(personas) + 1);
+void insertarFinalDeTPersonasLDE(TPersonasLDE &personas, TPersona persona)
+{
+  insertarTPersonasLDE(personas, persona, cantidadTPersonasLDE(personas) + 1);
 }
 
-TPersona obtenerInicioDeTPersonasLDE(TPersonasLDE personas){
-    return personas->inicio->persona;
+TPersona obtenerInicioDeTPersonasLDE(TPersonasLDE personas)
+{
+  if (personas->inicio == NULL)
+    return NULL;
+  return personas->inicio->persona;
 }
 
-TPersona obtenerFinalDeTPersonasLDE(TPersonasLDE personas){
-    return personas->final->persona;
+TPersona obtenerFinalDeTPersonasLDE(TPersonasLDE personas)
+{
+  if (personas->final == NULL)
+    return NULL;
+  return personas->final->persona;
 }
