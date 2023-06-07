@@ -13,6 +13,11 @@ struct rep_evento
     /****** Fin de parte Parte 4.1 *****/
 };
 
+char *descripcionEvento(TEvento e)
+{
+    return e->descripcion;
+}
+
 TEvento crearTEvento(int id, const char descripcion[MAX_DESCRIPCION], TFecha fecha)
 {
     TEvento nuevoEvento = NULL;

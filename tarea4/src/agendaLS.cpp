@@ -191,7 +191,7 @@ void removerDeAgendaLS(TAgendaLS &agenda, int id)
 
 TEvento primerEventoAgendaLS(TAgendaLS agenda)
 {
-    return NULL;
+    return agenda->evento;
 }
 
 ///////////////////////////////////////////////////////////////////////////

@@ -89,7 +89,6 @@ void aumentarTFecha(TFecha &fecha, nat dias)
     }
 }
 
-/****** Fin de parte Parte 3.9 *****/
 int compararTFechas(TFecha fecha1, TFecha fecha2)
 {
     int res = 0;
