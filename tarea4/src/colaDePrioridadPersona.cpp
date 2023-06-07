@@ -90,6 +90,10 @@ TColaDePrioridadPersona crearCP(nat N)
 void invertirPrioridad(TColaDePrioridadPersona &cp)
 {
   cp->isReverse = !cp->isReverse;
+  for (nat i = cp->max - 1; i >= 1; i--)
+  {
+    iterateUp(i, cp);
+  }
 }
 
 void liberarCP(TColaDePrioridadPersona &cp)

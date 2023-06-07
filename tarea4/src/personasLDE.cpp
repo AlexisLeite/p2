@@ -73,12 +73,11 @@ void insertarTPersonasLDE(TPersonasLDE &personas, TPersona persona, nat pos)
     }
 }
 
-void liberarNodes(Nodo ptr, bool untilEnd = true)
+void liberarNodes(Nodo ptr)
 {
     if (ptr != NULL)
     {
-        if (untilEnd)
-            liberarNodes(ptr->sig, untilEnd);
+        liberarNodes(ptr->sig);
         liberarTPersona(ptr->persona);
         delete ptr;
     }
@@ -246,16 +245,65 @@ TPersona obtenerFinalDeTPersonasLDE(TPersonasLDE personas)
 
 void eliminarPersonaConNombreTPersonasLDE(TPersonasLDE &personas, const char nombre[100])
 {
+    *personas->length = *personas->length - 1;
+    Nodo it = personas->inicio;
+    Nodo prev = NULL;
+
+    while (0 != strcmp(nombreTPersona(it->persona), nombre))
+    {
+        prev = it;
+        it = it->sig;
+    }
+
+    if (prev == NULL)
+    {
+        personas->inicio = it->sig;
+    }
+    else
+    {
+        prev->sig = it->sig;
+    }
+
+    if (it->sig == NULL)
+    {
+        personas->final = prev;
+    }
+
+    liberarTPersona(it->persona);
+    delete it;
 }
 
 bool estaPersonaConNombreEnTPersonasLDE(TPersonasLDE personas, const char nombre[100])
 {
-    return false;
+    if (personas == NULL)
+        return false;
+
+    Nodo it = personas->inicio;
+
+    while (it != NULL && 0 != strcmp(nombreTPersona(it->persona), nombre))
+    {
+        it = it->sig;
+    }
+
+    return it != NULL;
 }
 
 TPersona obtenerPersonaConNombreTPersonasLDE(TPersonasLDE personas, const char nombre[100])
 {
-    return NULL;
+    if (personas == NULL)
+        return NULL;
+
+    Nodo it = personas->inicio;
+
+    while (it != NULL && 0 != strcmp(nombreTPersona(it->persona), nombre))
+    {
+        it = it->sig;
+    }
+
+    if (it == NULL)
+        return NULL;
+
+    return it->persona;
 }
 
 ///////////////////////////////////////////////////////////////////////////
