@@ -1,7 +1,6 @@
 #include "../include/colaDePrioridadPersona.h"
 #include "../include/utils.h"
 #include "../include/evento.h"
-#include "../util.cpp"
 
 struct rep_colaDePrioridadPersona
 {
@@ -107,7 +106,6 @@ void liberarCP(TColaDePrioridadPersona &cp)
 
 void insertarEnCP(TPersona persona, TColaDePrioridadPersona &cp)
 {
-  clearFile();
   cp->data[cp->max] = persona;
   cp->people[idTPersona(persona)] = persona;
   iterateUp(cp->max, cp);
